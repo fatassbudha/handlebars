@@ -3,6 +3,10 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var path = require('path');
 
+var jsdom = require('jsdom');
+var window = jsdom.jsdom().parentWindow;
+var Cookies = require('cookies-js')(window);
+
 var app = express();
  
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

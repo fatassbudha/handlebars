@@ -1,1 +1,13 @@
-<p>WELCOME!</p>
+<script type="text/javascript" src="methods.js">
+</script>
+<script>
+	var user=getCookie("status");
+    if (user != 1) {
+        window.location = '/';
+    	}
+</script>
+<div class = "container" onload="checkCookie()">
+	<div class="form-inline">
+		<h1 align="left">Welcome</h1>
+	<button type = "button" onclick="logout()" class= "btn btn-success btn-md" id="signin" method="post">Leave</button>
+</div>
