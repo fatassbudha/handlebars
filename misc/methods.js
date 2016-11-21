@@ -16,30 +16,17 @@ function login() {
         window.location = '/my';
 
       }
-
     }
-
   });
-
-  if (check == 0) {
-    document.getElementById("modal-title").textContent = "Error";
-    document.getElementById("modal-text").textContent = "Incorrect Email/Password";
-
-    $('#modal').modal('show');
-    $('#reguser').val('');
-    $('#regpass').val('');
-  }
-  check = 0;
-
 };
 function logout() {
-    setCookie("status", 0, 30);
+    setCookie("status", 0, 0);
     window.location = '/';
 };
 
 function setCookie(cname,cvalue,exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    d.setTime(d.getTime() + (exdays*2*60*30));
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
@@ -69,3 +56,26 @@ function checkCookie() {
        }
     }
 }
+
+function reg() {
+    window.location = '/signup';
+};
+
+function saveReg() {
+    var newU = $('#newuser').val();
+    var newP = $('#newpass').val();
+    $.ajax
+        ({
+            type: "POST",
+            url: 'http://localhost:3000/profiles/',
+            accs: { 
+            "username" : newU,
+            "password" : newP
+            
+          },
+          success: function (){
+            window.location = '/';
+          },
+            dataType: "json"
+        });
+};

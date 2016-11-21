@@ -3,10 +3,6 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var path = require('path');
 
-var jsdom = require('jsdom');
-var window = jsdom.jsdom().parentWindow;
-var Cookies = require('cookies-js')(window);
-
 var app = express();
  
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -21,5 +17,13 @@ app.get('/my', function (req, res) {
     res.render('dash');
 });
 
+app.get('/signup', function (req, res) {
+    res.render('register');
+});
+
+app.get('/jason', function (req, res) {
+    res.render('accs.json');
+});
+
  
-app.listen(2000);
+app.listen(3000);
