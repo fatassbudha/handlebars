@@ -11,13 +11,20 @@
 	<div class="form-inline">
 	<h1 align="left">Login</h1>
 
-	<input type = "text" class = "form-control" id="reguser" placeholder="Username">
-	<input type = "password" class = "form-control" id="regpass" placeholder="Password">
-
+	<input type = "text" class = "form-control" id="reguser" placeholder="Username" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Required!">
+	<input type = "password" class = "form-control" id="regpass" placeholder="Password" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Required!">
+	<br><br>
 	<br><br>
 	<div>
 	<button type = "button" onclick="login()" class= "btn btn-success btn-md" id="signin" method="post">Sign in</button>
 	<button type = "button" class= "btn btn-success btn-md" id="signup" method="post" onclick="reg()">Sign up</button>
 	</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>
+
 <script type="text/javascript" src="methods.js">
 </script>

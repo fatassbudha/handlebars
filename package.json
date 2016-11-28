@@ -2,10 +2,10 @@
   "name": "handlebars",
   "version": "1.0.0",
   "description": "Intro to Handlebars",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js --ignore components --ignore containers"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
     "express-handlebars": "^3.0.0",
     "express-myconnection": "",
     "mysql": "^2.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

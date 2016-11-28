@@ -17,7 +17,7 @@ function login() {
       var uname = $('#reguser').val();
       var pword = $('#regpass').val();
 
-        for (var i = 0; i < len; i++) {
+        for (var i = 1; i < len; i++) {
           var dbuname = data[i].username;
           var dbpass = data[i].password;
           
@@ -85,6 +85,11 @@ function saveReg() {
              
             }
         });
-
-        window.location = '/';
+        if ($("#newuser").val() == "" ||
+                $("#newpass").val() == "") {
+          window.location = '/signup';
+        }
+        else{
+           window.location = '/';
+        }
   };

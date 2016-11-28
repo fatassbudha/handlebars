@@ -7,22 +7,10 @@ var mysql      = require('mysql');
 
 var app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
     var globDb2;
 
-    var connection = mysql.createConnection({
-      host     : 'localhost',
-      user     : 'root',
-      password : '',
-      database : 'db2'
-    });
-     
-    connection.connect();
-     
-    connection.query('SELECT * FROM profiles', function(err, rows, fields) {
-        globDb2 = rows;
-    });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/profs',function(req,res) {
   res.send(JSON.stringify(globDb2));
@@ -69,11 +57,28 @@ app.post('/signup',function(req,res) {
                                   profTodb2,function (err, result){
     console.log(query.sql);
     });
+     
+    connection.query('SELECT * FROM profiles', function(err, rows, fields) {
+        globDb2 = rows;
+    });
+    connection.end();
 });
- 
 
 app.get('/jason', function (req, res) {
     res.render('accs.json');
 });
 
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'root',
+      password : '',
+      database : 'db2'
+    });
+     
+    connection.connect();
+     
+    connection.query('SELECT * FROM profiles', function(err, rows, fields) {
+        globDb2 = rows;
+    });
+    connection.end();
 app.listen(3000);
