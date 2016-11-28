@@ -1,23 +1,32 @@
-var check = 0;
-
 function login() {
+        $.ajax({
+          url: '/profs',
+          type: 'GET',
 
-  var uname = $('#reguser').val();
-  var pword = $('#regpass').val();
-  $.getJSON('accs.json', function(data) {
-    var obj = jQuery.parseJSON(JSON.stringify(data));
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
 
-    for (var i = 0; i < obj.profiles.length; i++) {
-      if (uname == obj.profiles[i].username && pword == obj.profiles[i].password) {
+          success: function(data) {
+          var len = data.length;
+            console.log(data);
+            renderHTML(data,len); 
+          }
+        });
 
-        check++;
+      function renderHTML(data,len){
+      var uname = $('#reguser').val();
+      var pword = $('#regpass').val();
 
-        setCookie("status", 1, 30);
-        window.location = '/my';
-
+        for (var i = 0; i < len; i++) {
+          var dbuname = data[i].username;
+          var dbpass = data[i].password;
+          
+           if (uname == dbuname&& pword == dbpass) {
+              setCookie("status", 1, 30);
+              window.location = '/my';
+            }
       }
     }
-  });
 };
 function logout() {
     setCookie("status", 0, 0);
@@ -46,7 +55,7 @@ function getCookie(cname) {
     return "";
 }
 function checkCookie() {
-    var user=getCookie("username");
+    var user = getCookie("username");
     if (user != "") {
         alert("Welcome again " + user);
     } else {
@@ -62,20 +71,20 @@ function reg() {
 };
 
 function saveReg() {
-    var newU = $('#newuser').val();
-    var newP = $('#newpass').val();
-    $.ajax
-        ({
-            type: "POST",
-            url: 'http://localhost:3000/profiles/',
-            accs: { 
-            "username" : newU,
-            "password" : newP
-            
-          },
-          success: function (){
-            window.location = '/';
-          },
-            dataType: "json"
+    var arr = { "id": null,
+                "username": $("#newuser").val(),
+                "password": $("#newpass").val()};
+        $.ajax({
+            url: '/signup',
+            type: 'POST',
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+           
+            success: function(msg) {
+             
+            }
         });
-};
+
+        window.location = '/';
+  };

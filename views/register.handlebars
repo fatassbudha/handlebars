@@ -1,4 +1,13 @@
+<script type="text/javascript" src="methods.js">
+</script>
+<script>
+	var user=getCookie("status");
+    if (user == 1) {
+        window.location = '/my';
+    	}
+</script>
 <div class = "container">
+<form  method="post">
 	<div class="form-inline">
 	<h1 align="left">Sign up</h1>
 
@@ -6,8 +15,8 @@
 	<input type = "password" class = "form-control" id="newpass" placeholder="New Password">
 
 	<br><br>
-	<div>
-	<button type = "button" class= "btn btn-success btn-md" id="sr" method="post" onclick="saveReg()">Register</button>
+	<button type = "button" class= "btn btn-success btn-md" id="sr" onclick="saveReg()">Register</button>
 	</div>
+</form>
 <script type="text/javascript" src="methods.js">
 </script>
