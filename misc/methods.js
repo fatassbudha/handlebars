@@ -16,20 +16,27 @@ function login() {
       function renderHTML(data,len){
       var uname = $('#reguser').val();
       var pword = $('#regpass').val();
-
-        for (var i = 1; i < len; i++) {
-          var dbuname = data[i].username;
-          var dbpass = data[i].password;
+        if (uname == "" || pword == "") {
+            window.location = '/';};
+        if (uname != "" || pword != "") {
+          for (var i = 0; i < len; i++) {
+            var dbuname = data[i].username;
+            var dbpass = data[i].password;
           
-           if (uname == dbuname&& pword == dbpass) {
-              setCookie("status", 1, 30);
-              window.location = '/my';
+            if (uname == dbuname&& pword == dbpass) {
+                setCookie("status", 1, 30);
+                setCookie("user", uname, 30);
+                window.location = '/my';
             }
-      }
+          }
+        }
+      var element = document.getElementById("user");
+      element.innerHTML = uname;
     }
 };
 function logout() {
     setCookie("status", 0, 0);
+    setCookie("user", "");
     window.location = '/';
 };
 
