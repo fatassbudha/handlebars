@@ -17,18 +17,24 @@ function login() {
       var uname = $('#reguser').val();
       var pword = $('#regpass').val();
         if (uname == "" || pword == "") {
-            window.location = '/';};
+            window.alert("missing credentials");
+            window.location = '/';
+        };
         if (uname != "" || pword != "") {
           for (var i = 0; i < len; i++) {
             var dbuname = data[i].username;
             var dbpass = data[i].password;
-          
             if (uname == dbuname&& pword == dbpass) {
                 setCookie("status", 1, 30);
                 setCookie("user", uname, 30);
+                invalid = 1;
                 window.location = '/my';
+                exit;
             }
           }
+
+        window.alert("invalid credentials");
+        window.location.reload() = '/';
         }
       var element = document.getElementById("user");
       element.innerHTML = uname;
@@ -93,7 +99,8 @@ function saveReg() {
             }
         });
         if ($("#newuser").val() == "" ||
-                $("#newpass").val() == "") {
+            $("#newpass").val() == "") {
+          window.alert("missing credentials");
           window.location = '/signup';
         }
         else{

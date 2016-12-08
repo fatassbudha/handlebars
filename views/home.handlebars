@@ -5,11 +5,17 @@
     if (user == 1) {
         window.location = '/my';
     	}
+    document.title = 'Handlebars Webdev'
 </script>
 
-<div class = "container">
+<div class = "container" align="center">
+	<div align="center">
+	<h1>Shout Out!</h1>
+	<p id="des">shout shout shout ouuuuuut.</p>
+	<br><br>
+	</div>
 	<div class="form-inline">
-	<h1 align="left">Login</h1>
+	<h1 align="center">Login</h1>
 
 	<input type = "text" class = "form-control" id="reguser" placeholder="Username" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Required!">
 	<input type = "password" class = "form-control" id="regpass" placeholder="Password" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Required!">
@@ -18,7 +24,8 @@
 	<div>
 	<button type = "button" onclick="login()" class= "btn btn-success btn-md" id="signin" method="post">Sign in</button>
 	<button type = "button" class= "btn btn-success btn-md" id="signup" method="post" onclick="reg()">Sign up</button>
-	</div>
+
+</div>
 
 <script>
 $(document).ready(function(){
