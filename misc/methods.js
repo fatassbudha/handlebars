@@ -27,6 +27,7 @@ function login() {
             if (uname == dbuname&& pword == dbpass) {
                 setCookie("status", 1, 30);
                 setCookie("user", uname, 30);
+                setCookie("id", data[i].id, 30);
                 invalid = 1;
                 window.location = '/my';
                 exit;
@@ -40,6 +41,7 @@ function login() {
       element.innerHTML = uname;
     }
 };
+
 function logout() {
     setCookie("status", 0, 0);
     setCookie("user", "");
@@ -107,3 +109,66 @@ function saveReg() {
            window.location = '/';
         }
   };
+
+    function gotoupd(){
+      window.location = '/update';
+  };
+
+  function upd(){
+      window.location = '/my';
+  };
+
+function gotoshout(){
+      window.location = '/new?';
+};
+
+  function shout(){
+    var id = getCookie("id");
+    var arr = { "userID": id,
+                "outs": $("#txtShout").val()};
+        $.ajax({
+            url: '/new? ',
+            type: 'POST',   
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+           
+            success: function(msg) {
+             
+            }
+        });
+
+    window.location = '/my';
+  };
+
+  function del(){
+      var id = getCookie("id");
+       var arr = { "userID": id};
+      $.ajax({
+          url: '/del',
+          type: 'DELETE',
+
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+
+          success: function(data) {
+          var len = data.length;
+            console.log(data);
+            renderHTML(data,len); 
+          }
+        });
+
+      function renderHTML(data,len){
+      var uname = $('#reguser').val();
+      var pword = $('#regpass').val();
+        if (uname != "" || pword != "") {
+          for (var i = 0; i < len; i++) {
+            var dbuname = data[i].username;
+            var dbpass = data[i].password;
+            if (uname == dbuname&& pword == dbpass) {
+            }
+          }
+      window.location = '/';
+    }
+  }
+};

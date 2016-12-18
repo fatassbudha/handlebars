@@ -1,0 +1,28 @@
+<script type="text/javascript" src="methods.js">
+</script>
+<script>document.title = 'SHOOOOOOOUT'</script>
+<div class = "container">
+<form  method="post">
+	<div class="form-group">
+	<div>
+	<table class="table">
+	<tr>
+	<th>
+	<h1 align="left" id = "uID"></h1>
+	</th>
+	<script>
+	var id=getCookie("user");
+	document.getElementById('uID').innerHTML = id;
+	</script>
+		<th>
+		<input type = "text" class = "form-control" id="txtShout" placeholder="New Shout Out">
+		<br>
+		<button type = "button" class= "btn btn-success btn-md" id="sr" onclick="shout()">Shout!</button>
+		</th>
+	<br><br>
+	</tr>
+	</div>
+	</div>
+</form>
+<script type="text/javascript" src="methods.js">
+</script>

@@ -8,8 +8,20 @@
     document.title = 'Home'
 </script>
 <div class = "container" onload="checkCookie()">
-	<div class="form-inline">
-	<h1 align="left">Welcome, </h1> <h1 id="user" onclick="myFunction()"></>
+	<div>
+	<table class="table">
+	<tr>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+		<th>
+		<h1 align="left">Dashboard</h1> 
+		</th>
+		<th>
+		<h1 id="user" onclick="myFunction()"></>
+		</th>
 		<script>
 			var user=getCookie("user");
 			document.getElementById('user').innerHTML = user;
@@ -17,7 +29,65 @@
 	<br>
 	<br>
 	<br>
-	<button type = "button" onclick="logout()" class= "btn btn-success btn-md" id="leave" method="post">Leave</button>
+	<th>
+	</th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th>
+	<th><th>
+	<th>
+	<th>
+	<th>
+	<th><th>
+	<th>
+	<th>
+	<th>
+		<th>
+		<br>
+		<button type = "button" onclick="gotoshout()" class= "btn btn-success btn-md" id="so" method="post">Shout Out</button>
+		<button type = "button" onclick="logout()" class= "btn btn-success btn-md" id="leave" method="post">Leave</button>
+		</th>
+ </tr>
 </div>
 <script type="text/javascript" src="methods.js">
+</script>
+<div class="table-responsive col-md-3 col-md-3-col-md-offset-2">
+	<table class="table table table-hover">
+	<h1 align="left">Shout Outs</h1> 
+  <thead>
+  <tr>
+	<th></th>
+	<th></th>
+  </tr>
+  </thead>
+  <tbody id="b"></tbody>
+</div>
+<script type="text/javascript" src="shoutsMet.js">
+</script>
+
+<div class="table-responsive col-md-8 col-md-8-col-md-offset-2">
+	<table class="table table table-hover center-table">
+	<h1 align="left">User Profiles</h1> 
+  <thead>
+  <tr>
+	<th>ID</th>
+	<th>Firstname</th>
+	<th>Password</th>
+	<th>
+		<button type = "button" onclick="gotoupd()" class= "btn btn-success btn-md" id="eAcc" method="post">Edit Account</button>
+		</th>
+		<th>
+		<button type = "button" onclick="del()" class= "btn btn-success btn-md" id="del" method="post">Delete Account</button>
+  		</th>
+  </tr>
+  </thead>
+  <tbody id="a"></tbody>
+</div>
+<script type="text/javascript" src="methodsApp.js">
 </script>

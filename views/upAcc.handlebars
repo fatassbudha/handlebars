@@ -1,0 +1,29 @@
+<script type="text/javascript" src="methods.js">
+</script>
+<div class = "container">
+<form  method="post">
+	<div class="form-inline">
+	<div>
+	<table class="table">
+	<tr>
+	<th>
+	<h1 align="left" id = "uID"></h1>
+	</th>
+	<script>
+	var id=getCookie("id");
+	document.getElementById('uID').innerHTML = id;
+	</script>
+	<th>
+	<input type = "text" class = "form-control" id="newuser" placeholder="New Username">
+	<input type = "password" class = "form-control" id="newpass" placeholder="New Password">
+	</th>
+	<br><br>
+	<th>
+	<button type = "button" class= "btn btn-success btn-md" id="sr" onclick="upd()">Update</button>
+	</th>
+	</tr>
+	</div>
+	</div>
+</form>
+<script type="text/javascript" src="methods.js">
+</script>
