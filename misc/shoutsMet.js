@@ -15,10 +15,10 @@ $.ajax({
 
 	function renderHTML(datas,lens){
           for (var i = 0; i < lens; i++) {
-            var outs = datas[i].outs;
-            var userID = datas[i].userID;
-            $("#b").append("<tr><td>" + userID+"<td>"
-            				+ outs+"</tr>");
+            var out = datas[i].out;
+            var user = datas[i].user;
+            $("#b").append("<tr><td>" + user+"<td>"
+            				+ out+"</tr>");
             }
         }
     

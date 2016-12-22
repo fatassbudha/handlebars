@@ -20,9 +20,6 @@ app.get('/profs',function(req,res) {
 app.get('/shouts',function(req,res) {
   res.send(JSON.stringify(globShout));
 });
-app.get('/del',function(req,res) {
-  res.send(JSON.stringify(del));
-});
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -31,46 +28,21 @@ app.set('view engine', 'handlebars');
 app.get('/', function (req, res) {
     res.render('home');
 });
-/*
-app.delete('/',function(req,res) {
-
-    console.log(req.body);
-    var id = req.body.userID;
-    var del = {
-      id : id
-    }
-
-    var connection = mysql.createConnection({
-      host     : 'localhost',
-      user     : 'root',
-      password : '',
-      database : 'db2'
-    });
-     
-    connection.connect();
-
-    var query = connection.query('Delete FROM profiles where  id = id',
-                                  del,function (err, result){
-    console.log(query.sql);
-    });
-    connection.end();
+app.get('/my', function (req, res) {
+    res.render('dash');
 });
-*/
-app.get('/update', function (req, res) {
-    res.render('upAcc');
-}); 
+
 app.get('/new?', function (req, res) {
     res.render('shout');
 }); 
-/*
 app.post('/new?',function(req,res) {
 
     console.log(req.body);
-    var userID = req.body.userID;
-    var outs = req.body.outs;
+    var userID = req.body.user;
+    var outs = req.body.out;
     var profToShout = {
-      userID : userID,
-      outs : outs
+      user : userID,
+      out : outs
     }
 
     var connection = mysql.createConnection({
@@ -82,26 +54,110 @@ app.post('/new?',function(req,res) {
      
     connection.connect();
 
-    var query = connection.query('INSERT INTO shout set ?',
+    var query = connection.query('INSERT INTO shout2 set ?',
                                   profToShout,function (err, result){
     console.log(query.sql);
     });
      
-    connection.query('SELECT * FROM shout', function(err, rows, fields) {
+    connection.query('SELECT * FROM shout2', function(err, rows, fields) {
         globShout = rows;
     });
     connection.end();
 });
-*/
-app.get('/my', function (req, res) {
-    res.render('dash');
-});/*
-app.post('/my',function(req,res) {
+
+app.get('/delete', function (req, res) {
+    res.render('delete');
+});
+app.post('/delete',function(req,res) {
+
+  var counter = 0;
+  var id = req.body.id2del;
+
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'root',
+      password : '',
+      database : 'db2'
+    });
+     
+    connection.connect();
+
+    var sql = 'DELETE FROM profiles WHERE ID =  "' + id;
+    sql = sql + '"';
+    connection.query(sql, function(err, rows, fields) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log("Delete Successful!");
+      var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'db2'
+      });
+      res.render('dash');
+      connection.connect();
+      connection.query("SELECT * FROM profiles", function(err, rows, fields) {
+        if (err) {
+          console.error(err);
+          return;
+        } else {
+          globDb2 = rows;
+        }
+      });
+    });
+    connection.end();
+});
+app.get('/update', function (req, res) {
+    res.render('upAcc');
+});
+app.post('/update',function(req,res) {
+
+    var nuname = req.body.newuser;
+    var id = req.body.updateid;
+
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'root',
+      password : '',
+      database : 'db2'
+    });
+     
+    connection.connect();
+    var sql = 'UPDATE profiles SET username = "' + nuname;
+    sql = sql + '" WHERE ID = ' + id;
+    connection.query(sql, function(err, rows, fields) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log("Update Successful!");
+      res.render('home');
+    });
+    connection.end();
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'root',
+      password : '',
+      database : 'db2'
+    });
+    connection.query('SELECT * FROM profiles', function(err, rows, fields) {
+        globDb2 = rows;
+    });
+    connection.end();
+
+});
+
+app.get('/signup', function (req, res) {
+    res.render('register');
+});
+app.post('/signup',function(req,res) {
 
     console.log(req.body);
     var id = null;
-    var nuname = req.body.nusername;
-    var npword = req.body.npassword;
+    var uname = req.body.username;
+    var pword = req.body.password;
     var profTodb2 = {
       id : id,
       username : uname,
@@ -117,7 +173,7 @@ app.post('/my',function(req,res) {
      
     connection.connect();
 
-    var query = connection.query('UPDATE profiles set username = ',
+    var query = connection.query('INSERT INTO profiles set ?',
                                   profTodb2,function (err, result){
     console.log(query.sql);
     });
@@ -127,11 +183,10 @@ app.post('/my',function(req,res) {
     });
     connection.end();
 });
-*/
-app.get('/signup', function (req, res) {
-    res.render('register');
+app.get('/signup2', function (req, res) {
+    res.render('register2');
 });
-app.post('/signup',function(req,res) {
+app.post('/signup2',function(req,res) {
 
     console.log(req.body);
     var id = null;
@@ -175,7 +230,7 @@ app.post('/signup',function(req,res) {
         globDb2 = rows;
     });
      
-    connection.query('SELECT userID, outs FROM shout LEFT JOIN profiles ON shout.userID = profiles.id', function(err, rows, fields) {
+    connection.query('SELECT user, out FROM shout2 ', function(err, rows, fields) {
         globShout = rows;
     });
     connection.end();

@@ -50,25 +50,29 @@
 	<th>
 		<th>
 		<br>
-		<button type = "button" onclick="gotoshout()" class= "btn btn-success btn-md" id="so" method="post">Shout Out</button>
 		<button type = "button" onclick="logout()" class= "btn btn-success btn-md" id="leave" method="post">Leave</button>
 		</th>
- </tr>
+ 	</tr>
+		 <tr>	<th></th><th></th><th></th><th>
+		 		</th><th></th><th></th><th></th>
+		 		<th></th><th></th><th></th><th>
+		 		</th><th></th><th></th><th></th>
+		 		<th></th><th></th><th></th><th>
+		 		</th><th></th><th></th><th></th>
+		 		</th><th></th><th></th><th></th>
+		 		<th></th><th></th><th></th>
+		 <th>
+		 <button type = "button" onclick="regNew()" class= "btn btn-success btn-md" id="regNew" method="post">Create New</button>
+		</th>
+				<th>
+				<button type = "button" onclick="gotoupd()" class= "btn btn-success btn-md" id="eAcc" method="post">Edit Account</button>
+				</th>
+				<th>
+				<button type = "button" onclick="del()" class= "btn btn-success btn-md" id="del" method="post">Delete Account</button>
+		  		</th>
+		</tr>
 </div>
 <script type="text/javascript" src="methods.js">
-</script>
-<div class="table-responsive col-md-3 col-md-3-col-md-offset-2">
-	<table class="table table table-hover">
-	<h1 align="left">Shout Outs</h1> 
-  <thead>
-  <tr>
-	<th></th>
-	<th></th>
-  </tr>
-  </thead>
-  <tbody id="b"></tbody>
-</div>
-<script type="text/javascript" src="shoutsMet.js">
 </script>
 
 <div class="table-responsive col-md-8 col-md-8-col-md-offset-2">
@@ -79,15 +83,26 @@
 	<th>ID</th>
 	<th>Firstname</th>
 	<th>Password</th>
-	<th>
-		<button type = "button" onclick="gotoupd()" class= "btn btn-success btn-md" id="eAcc" method="post">Edit Account</button>
-		</th>
-		<th>
-		<button type = "button" onclick="del()" class= "btn btn-success btn-md" id="del" method="post">Delete Account</button>
-  		</th>
   </tr>
   </thead>
   <tbody id="a"></tbody>
 </div>
 <script type="text/javascript" src="methodsApp.js">
+</script>
+
+<div class="table-responsive col-md-3 col-md-3-col-md-offset-2">
+	<table class="table table table-hover">
+	<h1 align="left">Shout Outs</h1> 
+	<center>
+	<button type = "button" onclick="gotoshout()" class= "btn btn-success btn-md" id="so" method="post">Shout Out</button>
+	</center>
+  <thead>
+  <tr>
+	<th></th>
+	<th></th>
+  </tr>
+  </thead>
+  <tbody id="b"></tbody>
+</div>
+<script type="text/javascript" src="shoutsMet.js">
 </script>

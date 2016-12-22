@@ -84,6 +84,9 @@ function checkCookie() {
 function reg() {
     window.location = '/signup';
 };
+function regNew() {
+    window.location = '/signup2';
+};
 
 function saveReg() {
     var arr = { "id": null,
@@ -103,19 +106,35 @@ function saveReg() {
         if ($("#newuser").val() == "" ||
             $("#newpass").val() == "") {
           window.alert("missing credentials");
-          window.location = '/signup';
+          window.location = '/signup2';
         }
         else{
-           window.location = '/';
+           window.location = '/my';
         }
   };
-
-    function gotoupd(){
-      window.location = '/update';
-  };
-
-  function upd(){
-      window.location = '/my';
+function saveReg2() {
+    var arr = { "id": null,
+                "username": $("#newuser").val(),
+                "password": $("#newpass").val()};
+        $.ajax({
+            url: '/signup',
+            type: 'POST',
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+           
+            success: function(msg) {
+             
+            }
+        });
+        if ($("#newuser").val() == "" ||
+            $("#newpass").val() == "") {
+          window.alert("missing credentials");
+          window.location = '/signup2';
+        }
+        else{
+           window.location = '/my';
+        }
   };
 
 function gotoshout(){
@@ -123,9 +142,9 @@ function gotoshout(){
 };
 
   function shout(){
-    var id = getCookie("id");
-    var arr = { "userID": id,
-                "outs": $("#txtShout").val()};
+    var id = getCookie("user");
+    var arr = { "user": id,
+                "out": $("#txtShout").val()};
         $.ajax({
             url: '/new? ',
             type: 'POST',   
@@ -142,33 +161,30 @@ function gotoshout(){
   };
 
   function del(){
-      var id = getCookie("id");
-       var arr = { "userID": id};
-      $.ajax({
-          url: '/del',
-          type: 'DELETE',
-
-          contentType: 'application/json; charset=utf-8',
-          dataType: 'json',
-
-          success: function(data) {
-          var len = data.length;
-            console.log(data);
-            renderHTML(data,len); 
-          }
-        });
-
-      function renderHTML(data,len){
-      var uname = $('#reguser').val();
-      var pword = $('#regpass').val();
-        if (uname != "" || pword != "") {
-          for (var i = 0; i < len; i++) {
-            var dbuname = data[i].username;
-            var dbpass = data[i].password;
-            if (uname == dbuname&& pword == dbpass) {
-            }
-          }
-      window.location = '/';
-    }
-  }
+      window.location = '/delete';
 };
+function search(){
+      window.reload;
+};
+function deletee() {
+  var counter = 0;
+  var id = document.getElementById('id2del').value;
+  if(id == ''){
+    window.alert('All fields require input.');
+    window.location='/delete';
+  }
+  else{
+    window.alert('Delete Successful!');
+    window.location = '/my';
+  }
+}
+function gotoupd(){
+      window.location = '/update';
+  };
+
+  function upd(){
+      var newuser = document.getElementById('newuser').value;
+      var updateid = document.getElementById('updateid').value;
+      window.alert('Update Successful!'); 
+            window.location='/my';
+          }
